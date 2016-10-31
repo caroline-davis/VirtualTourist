@@ -14,6 +14,8 @@
 		F1826EDE1DC6C4A0008C3A4D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1826EDC1DC6C4A0008C3A4D /* LaunchScreen.storyboard */; };
 		F1826EE91DC6C4A0008C3A4D /* VirtualTouristTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1826EE81DC6C4A0008C3A4D /* VirtualTouristTests.swift */; };
 		F1826EF41DC6C4A0008C3A4D /* VirtualTouristUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1826EF31DC6C4A0008C3A4D /* VirtualTouristUITests.swift */; };
+		F1826F061DC6F7CD008C3A4D /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F1826F041DC6F7CD008C3A4D /* Model.xcdatamodeld */; };
+		F1826F081DC6FC2A008C3A4D /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1826F071DC6FC2A008C3A4D /* CoreDataStack.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +49,8 @@
 		F1826EEF1DC6C4A0008C3A4D /* VirtualTouristUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VirtualTouristUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1826EF31DC6C4A0008C3A4D /* VirtualTouristUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirtualTouristUITests.swift; sourceTree = "<group>"; };
 		F1826EF51DC6C4A0008C3A4D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F1826F051DC6F7CD008C3A4D /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		F1826F071DC6FC2A008C3A4D /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +133,8 @@
 		F1826F011DC6C4C4008C3A4D /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				F1826F041DC6F7CD008C3A4D /* Model.xcdatamodeld */,
+				F1826F071DC6FC2A008C3A4D /* CoreDataStack.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -286,6 +292,8 @@
 			files = (
 				F1826ED61DC6C4A0008C3A4D /* MapViewController.swift in Sources */,
 				F1826ED41DC6C4A0008C3A4D /* AppDelegate.swift in Sources */,
+				F1826F061DC6F7CD008C3A4D /* Model.xcdatamodeld in Sources */,
+				F1826F081DC6FC2A008C3A4D /* CoreDataStack.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -548,6 +556,19 @@
 			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		F1826F041DC6F7CD008C3A4D /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				F1826F051DC6F7CD008C3A4D /* Model.xcdatamodel */,
+			);
+			currentVersion = F1826F051DC6F7CD008C3A4D /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = F1826EC81DC6C4A0008C3A4D /* Project object */;
 }
