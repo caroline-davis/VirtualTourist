@@ -16,6 +16,10 @@
 		F1826EF41DC6C4A0008C3A4D /* VirtualTouristUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1826EF31DC6C4A0008C3A4D /* VirtualTouristUITests.swift */; };
 		F1826F061DC6F7CD008C3A4D /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F1826F041DC6F7CD008C3A4D /* Model.xcdatamodeld */; };
 		F1826F081DC6FC2A008C3A4D /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1826F071DC6FC2A008C3A4D /* CoreDataStack.swift */; };
+		F1826F0D1DC712DC008C3A4D /* Pin+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1826F091DC712DC008C3A4D /* Pin+CoreDataClass.swift */; };
+		F1826F0E1DC712DC008C3A4D /* Pin+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1826F0A1DC712DC008C3A4D /* Pin+CoreDataProperties.swift */; };
+		F1826F0F1DC712DC008C3A4D /* Photo+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1826F0B1DC712DC008C3A4D /* Photo+CoreDataClass.swift */; };
+		F1826F101DC712DC008C3A4D /* Photo+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1826F0C1DC712DC008C3A4D /* Photo+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +55,10 @@
 		F1826EF51DC6C4A0008C3A4D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F1826F051DC6F7CD008C3A4D /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		F1826F071DC6FC2A008C3A4D /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		F1826F091DC712DC008C3A4D /* Pin+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Pin+CoreDataClass.swift"; path = "../Pin+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F1826F0A1DC712DC008C3A4D /* Pin+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Pin+CoreDataProperties.swift"; path = "../Pin+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		F1826F0B1DC712DC008C3A4D /* Photo+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Photo+CoreDataClass.swift"; path = "../Photo+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F1826F0C1DC712DC008C3A4D /* Photo+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Photo+CoreDataProperties.swift"; path = "../Photo+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +141,10 @@
 		F1826F011DC6C4C4008C3A4D /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				F1826F091DC712DC008C3A4D /* Pin+CoreDataClass.swift */,
+				F1826F0A1DC712DC008C3A4D /* Pin+CoreDataProperties.swift */,
+				F1826F0B1DC712DC008C3A4D /* Photo+CoreDataClass.swift */,
+				F1826F0C1DC712DC008C3A4D /* Photo+CoreDataProperties.swift */,
 				F1826F041DC6F7CD008C3A4D /* Model.xcdatamodeld */,
 				F1826F071DC6FC2A008C3A4D /* CoreDataStack.swift */,
 			);
@@ -291,8 +303,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				F1826ED61DC6C4A0008C3A4D /* MapViewController.swift in Sources */,
+				F1826F0F1DC712DC008C3A4D /* Photo+CoreDataClass.swift in Sources */,
+				F1826F0E1DC712DC008C3A4D /* Pin+CoreDataProperties.swift in Sources */,
+				F1826F0D1DC712DC008C3A4D /* Pin+CoreDataClass.swift in Sources */,
 				F1826ED41DC6C4A0008C3A4D /* AppDelegate.swift in Sources */,
 				F1826F061DC6F7CD008C3A4D /* Model.xcdatamodeld in Sources */,
+				F1826F101DC712DC008C3A4D /* Photo+CoreDataProperties.swift in Sources */,
 				F1826F081DC6FC2A008C3A4D /* CoreDataStack.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
