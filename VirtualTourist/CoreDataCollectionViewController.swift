@@ -9,9 +9,9 @@
 import UIKit
 import CoreData
 
-class CoreDataCollectionViewController: UICollectionViewController {
+class CoreDataCollectionViewController: UICollectionViewController, NSFetchedResultsControllerDelegate {
     
-    var fetchedResultsController : NSFetchedResultsController? {
+    var fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult>? {
         didSet {
             // Whenever the frc changes, we execute the search and
             // reload the table
@@ -20,6 +20,7 @@ class CoreDataCollectionViewController: UICollectionViewController {
             collectionView?.reloadData()
         }
     }
+    
   
 }
 
