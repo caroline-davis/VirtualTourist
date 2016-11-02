@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="kv0-II-IA8">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Map View Controller-->
+        <!--Virtual Tourist-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="MapViewController" customModule="VirtualTourist" customModuleProvider="target" sceneMemberID="viewController">
@@ -19,26 +19,18 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="mki-Rl-0d9"/>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2DJ-Pi-x3f">
-                                <items>
-                                    <navigationItem title="Virtual Tourist" id="Yva-wI-mbD">
-                                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="mBr-WY-Msv"/>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="2DJ-Pi-x3f" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="QAt-6X-HeI"/>
-                            <constraint firstItem="2DJ-Pi-x3f" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Qlo-b2-imu"/>
-                            <constraint firstItem="2DJ-Pi-x3f" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Thi-3f-glf"/>
-                            <constraint firstItem="2DJ-Pi-x3f" firstAttribute="trailing" secondItem="mki-Rl-0d9" secondAttribute="trailing" id="awJ-7j-yee"/>
-                            <constraint firstItem="2DJ-Pi-x3f" firstAttribute="leading" secondItem="mki-Rl-0d9" secondAttribute="leading" id="fz7-ry-o1c"/>
-                            <constraint firstAttribute="trailing" secondItem="2DJ-Pi-x3f" secondAttribute="trailing" id="gzi-m1-9Mm"/>
-                            <constraint firstItem="mki-Rl-0d9" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="37" id="lZz-ox-JrK"/>
+                            <constraint firstItem="mki-Rl-0d9" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="FSF-55-VB7"/>
+                            <constraint firstItem="mki-Rl-0d9" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="lZz-ox-JrK"/>
                             <constraint firstItem="mki-Rl-0d9" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="qGW-pb-AOl"/>
+                            <constraint firstAttribute="trailing" secondItem="mki-Rl-0d9" secondAttribute="trailing" id="uRI-LE-DO9"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Virtual Tourist" id="8Ox-ob-gNo">
+                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="ryi-kJ-C9z"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="mki-Rl-0d9" id="bn5-W6-KUu"/>
                     </connections>
@@ -46,6 +38,56 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="32.799999999999997" y="18.440779610194905"/>
+        </scene>
+        <!--Collection View Controller-->
+        <scene sceneID="uQA-hU-cTC">
+            <objects>
+                <collectionViewController id="s5F-fc-SYE" customClass="CollectionViewController" customModule="VirtualTourist" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="Gyd-J2-NtG">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="L2B-b7-31t">
+                            <size key="itemSize" width="50" height="50"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="7Td-uY-fy0" userLabel="cell">
+                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </view>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="s5F-fc-SYE" id="aMy-Lz-pEK"/>
+                            <outlet property="delegate" destination="s5F-fc-SYE" id="gfB-6z-ojc"/>
+                        </connections>
+                    </collectionView>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0pM-Xx-JLf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="746" y="18"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="VPX-Fi-rud">
+            <objects>
+                <navigationController id="kv0-II-IA8" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="3WC-tR-l6p">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="xHc-JS-b9a"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dRv-ui-sd7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-708" y="18"/>
         </scene>
     </scenes>
 </document>

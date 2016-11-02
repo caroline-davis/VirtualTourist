@@ -20,6 +20,8 @@
 		F1826F0E1DC712DC008C3A4D /* Pin+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1826F0A1DC712DC008C3A4D /* Pin+CoreDataProperties.swift */; };
 		F1826F0F1DC712DC008C3A4D /* Photo+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1826F0B1DC712DC008C3A4D /* Photo+CoreDataClass.swift */; };
 		F1826F101DC712DC008C3A4D /* Photo+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1826F0C1DC712DC008C3A4D /* Photo+CoreDataProperties.swift */; };
+		F1831E6D1DC9A68B00FBC547 /* CoreDataCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1831E6C1DC9A68B00FBC547 /* CoreDataCollectionViewController.swift */; };
+		F196FB861DC998DD00FFCB16 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F196FB851DC998DD00FFCB16 /* CollectionViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +61,8 @@
 		F1826F0A1DC712DC008C3A4D /* Pin+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Pin+CoreDataProperties.swift"; path = "../Pin+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		F1826F0B1DC712DC008C3A4D /* Photo+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Photo+CoreDataClass.swift"; path = "../Photo+CoreDataClass.swift"; sourceTree = "<group>"; };
 		F1826F0C1DC712DC008C3A4D /* Photo+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Photo+CoreDataProperties.swift"; path = "../Photo+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		F1831E6C1DC9A68B00FBC547 /* CoreDataCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataCollectionViewController.swift; sourceTree = "<group>"; };
+		F196FB851DC998DD00FFCB16 /* CollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +167,8 @@
 			isa = PBXGroup;
 			children = (
 				F1826ED51DC6C4A0008C3A4D /* MapViewController.swift */,
+				F1831E6C1DC9A68B00FBC547 /* CoreDataCollectionViewController.swift */,
+				F196FB851DC998DD00FFCB16 /* CollectionViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -302,6 +308,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F196FB861DC998DD00FFCB16 /* CollectionViewController.swift in Sources */,
 				F1826ED61DC6C4A0008C3A4D /* MapViewController.swift in Sources */,
 				F1826F0F1DC712DC008C3A4D /* Photo+CoreDataClass.swift in Sources */,
 				F1826F0E1DC712DC008C3A4D /* Pin+CoreDataProperties.swift in Sources */,
@@ -310,6 +317,7 @@
 				F1826F061DC6F7CD008C3A4D /* Model.xcdatamodeld in Sources */,
 				F1826F101DC712DC008C3A4D /* Photo+CoreDataProperties.swift in Sources */,
 				F1826F081DC6FC2A008C3A4D /* CoreDataStack.swift in Sources */,
+				F1831E6D1DC9A68B00FBC547 /* CoreDataCollectionViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
