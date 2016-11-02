@@ -110,9 +110,9 @@
 			isa = PBXGroup;
 			children = (
 				F1826ED31DC6C4A0008C3A4D /* AppDelegate.swift */,
-				F1826F011DC6C4C4008C3A4D /* Model */,
 				F1826F021DC6C4CA008C3A4D /* View */,
 				F1826F031DC6C4FB008C3A4D /* Controller */,
+				F1826F011DC6C4C4008C3A4D /* Model */,
 				F1826EDA1DC6C4A0008C3A4D /* Assets.xcassets */,
 				F1826EDC1DC6C4A0008C3A4D /* LaunchScreen.storyboard */,
 				F1826EDF1DC6C4A0008C3A4D /* Info.plist */,
@@ -142,11 +142,11 @@
 			isa = PBXGroup;
 			children = (
 				F1826F091DC712DC008C3A4D /* Pin+CoreDataClass.swift */,
-				F1826F0A1DC712DC008C3A4D /* Pin+CoreDataProperties.swift */,
 				F1826F0B1DC712DC008C3A4D /* Photo+CoreDataClass.swift */,
-				F1826F0C1DC712DC008C3A4D /* Photo+CoreDataProperties.swift */,
-				F1826F041DC6F7CD008C3A4D /* Model.xcdatamodeld */,
 				F1826F071DC6FC2A008C3A4D /* CoreDataStack.swift */,
+				F1826F041DC6F7CD008C3A4D /* Model.xcdatamodeld */,
+				F1826F0C1DC712DC008C3A4D /* Photo+CoreDataProperties.swift */,
+				F1826F0A1DC712DC008C3A4D /* Pin+CoreDataProperties.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -554,6 +554,7 @@
 				F1826EFA1DC6C4A0008C3A4D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F1826EFB1DC6C4A0008C3A4D /* Build configuration list for PBXNativeTarget "VirtualTouristTests" */ = {
 			isa = XCConfigurationList;
@@ -562,6 +563,7 @@
 				F1826EFD1DC6C4A0008C3A4D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F1826EFE1DC6C4A0008C3A4D /* Build configuration list for PBXNativeTarget "VirtualTouristUITests" */ = {
 			isa = XCConfigurationList;
@@ -570,6 +572,7 @@
 				F1826F001DC6C4A0008C3A4D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
