@@ -21,7 +21,6 @@ class CoreDataCollectionViewController: UICollectionViewController, NSFetchedRes
         }
     }
     
-  
 }
 
 // MARK: - CoreDataTableViewController (For Subclasses)
@@ -33,7 +32,24 @@ extension CoreDataCollectionViewController {
     }
 }
 
-
+extension CoreDataCollectionViewController {
+    
+     func numberOfSectionsInTableView(collectionView: UICollectionView) -> Int {
+        if let fc = fetchedResultsController {
+            return (fc.sections?.count)!
+        } else {
+            return 0
+        }
+    }
+    
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if let fc = fetchedResultsController {
+            return fc.sections![section].numberOfObjects
+        } else {
+            return 0
+        }
+    }
+}
 
 // MARK: - CoreDataTableViewController (Fetches)
 
