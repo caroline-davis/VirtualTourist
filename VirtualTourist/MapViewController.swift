@@ -13,12 +13,18 @@ import CoreData
 class MapViewController: UIViewController, MKMapViewDelegate {
     
     @IBOutlet weak var mapView: MKMapView!
+
+
+    
     
     var stack: CoreDataStack!
     
+ 
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
+
+    
         
         // Get the Stack
         let delegate = UIApplication.shared.delegate as! AppDelegate
@@ -48,14 +54,13 @@ class MapViewController: UIViewController, MKMapViewDelegate {
                     
                     // Finally we place the annotation in an array of annotations.
                     annotations.append(annotation)
-                    
                 }
             }
         } catch let error as NSError {
             print(error.localizedDescription)
         }
         self.mapView.addAnnotations(annotations)
-        // centerMapOnLocation(annotations.last!, regionRadius: 1000.0)
+        //centerMapOnLocation(annotations.last!, regionRadius: 1000.0)
     }
     
     // MARK: - MKMapViewDelegate
@@ -63,7 +68,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     // Here we create a view with a "right callout accessory view". You might choose to look into other
     // decoration alternatives. Notice the similarity between this method and the cellForRowAtIndexPath
     // method in TableViewDataSource.
-    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         
         let reuseId = "pin"
         
@@ -79,6 +84,20 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         }
         return pinView
     }
+    
+    // This delegate method is implemented to respond to taps. It needs to segue to the collectionview controller
+    
+    // ***Need to do something like, if click edit then taps it deletes pins, or if they didnt tap edit then add the segue to collection view controller**** + load the images.
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        if control == view.rightCalloutAccessoryView {
+     //       let app = UIApplication.shared
+       //     if let toOpen = view.annotation?.subtitle! {
+                
+          //  }
+        }
+    }
+    
+
 
     
         override func didReceiveMemoryWarning() {

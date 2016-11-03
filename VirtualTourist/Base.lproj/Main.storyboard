@@ -28,11 +28,10 @@
                             <constraint firstAttribute="trailing" secondItem="mki-Rl-0d9" secondAttribute="trailing" id="uRI-LE-DO9"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Virtual Tourist" id="8Ox-ob-gNo">
-                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="ryi-kJ-C9z"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Virtual Tourist" id="8Ox-ob-gNo"/>
                     <connections>
                         <outlet property="mapView" destination="mki-Rl-0d9" id="bn5-W6-KUu"/>
+                        <segue destination="s5F-fc-SYE" kind="show" identifier="displayPhotos" id="qwi-Ft-mW1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

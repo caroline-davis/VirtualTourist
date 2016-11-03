@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreData
+import UIKit
 
 
 public class Photo: NSManagedObject {
@@ -25,5 +26,14 @@ public class Photo: NSManagedObject {
             fatalError("Unable to find Entity name!")
         }
     }
+    // MARK: Computed Property
+    
+    var humanReadableImage: AnyObject? {
+        get {
+           let swiftImage : UIImage = UIImage(data: image as! Data)!
+            return swiftImage
+        }
+    }
+
 
 }
