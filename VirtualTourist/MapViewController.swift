@@ -10,21 +10,32 @@ import UIKit
 import MapKit
 import CoreData
 
-class MapViewController: UIViewController, MKMapViewDelegate {
+class MapViewController: UIViewController, MKMapViewDelegate, UIGestureRecognizerDelegate, CLLocationManagerDelegate {
     
     @IBOutlet weak var mapView: MKMapView!
-
-
-    
-    
     var stack: CoreDataStack!
+    
+    func handleLongPress(pressRecognizer: UIGestureRecognizer){
+        if pressRecognizer.state != .began { return }
+        
+        let touchPoint = pressRecognizer.location(in: self.mapView)
+        let touchMapCoordinate = mapView.convert(touchPoint, toCoordinateFrom: mapView)
+        
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = touchMapCoordinate
+        
+        mapView.addAnnotation(annotation)
+    }
+    
     
  
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
 
-    
+        let longPress = UILongPressGestureRecognizer(target: self, action: #selector(self.handleLongPress(pressRecognizer:)))
+        longPress.minimumPressDuration = 1.0
+        mapView.addGestureRecognizer(longPress)
         
         // Get the Stack
         let delegate = UIApplication.shared.delegate as! AppDelegate
@@ -84,10 +95,11 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         }
         return pinView
     }
+
     
     // This delegate method is implemented to respond to taps. It needs to segue to the collectionview controller
     
-    // ***Need to do something like, if click edit then taps it deletes pins, or if they didnt tap edit then add the segue to collection view controller**** + load the images.
+    // *** when pin is tapped it segues to collection view controller**** + load the images.
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         if control == view.rightCalloutAccessoryView {
      //       let app = UIApplication.shared
