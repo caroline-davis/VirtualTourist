@@ -14,25 +14,13 @@ class MapViewController: UIViewController, MKMapViewDelegate, UIGestureRecognize
     
     @IBOutlet weak var mapView: MKMapView!
     var stack: CoreDataStack!
-    
-    func handleLongPress(pressRecognizer: UIGestureRecognizer){
-        if pressRecognizer.state != .began { return }
-        
-        let touchPoint = pressRecognizer.location(in: self.mapView)
-        let touchMapCoordinate = mapView.convert(touchPoint, toCoordinateFrom: mapView)
-        
-        let annotation = MKPointAnnotation()
-        annotation.coordinate = touchMapCoordinate
-        
-        mapView.addAnnotation(annotation)
-    }
-    
-    
+
  
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
 
+        // Calls the function to place pins and sets the press duration
         let longPress = UILongPressGestureRecognizer(target: self, action: #selector(self.handleLongPress(pressRecognizer:)))
         longPress.minimumPressDuration = 1.0
         mapView.addGestureRecognizer(longPress)
@@ -80,9 +68,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, UIGestureRecognize
     // decoration alternatives. Notice the similarity between this method and the cellForRowAtIndexPath
     // method in TableViewDataSource.
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        
+       
         let reuseId = "pin"
-        
         var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId) as? MKPinAnnotationView
         
         if pinView == nil {
@@ -97,20 +84,25 @@ class MapViewController: UIViewController, MKMapViewDelegate, UIGestureRecognize
     }
 
     
-    // This delegate method is implemented to respond to taps. It needs to segue to the collectionview controller
-    
-    // *** when pin is tapped it segues to collection view controller**** + load the images.
-    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        if control == view.rightCalloutAccessoryView {
-     //       let app = UIApplication.shared
-       //     if let toOpen = view.annotation?.subtitle! {
-                
-          //  }
-        }
+    // When the user presses on the map a pin comes up
+    func handleLongPress(pressRecognizer: UIGestureRecognizer){
+        if pressRecognizer.state != .began { return }
+        
+        let touchPoint = pressRecognizer.location(in: self.mapView)
+        let touchMapCoordinate = mapView.convert(touchPoint, toCoordinateFrom: mapView)
+        
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = touchMapCoordinate
+        
+        mapView.addAnnotation(annotation)
     }
     
-
-
+    // When pin is tapped it segues over to the collectionviewcontroller
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        print("its me")
+        mapView.deselectAnnotation(view.annotation, animated: true)
+        performSegue(withIdentifier: "displayPhotos", sender: view)
+    }
     
         override func didReceiveMemoryWarning() {
             super.didReceiveMemoryWarning()
@@ -119,3 +111,25 @@ class MapViewController: UIViewController, MKMapViewDelegate, UIGestureRecognize
         
 
 }
+
+
+// This delegate method is implemented to respond to taps. It needs to segue to the collectionview controller
+
+// *** when pin is tapped it segues to collection view controller**** + load the images.
+//func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+//  private func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
+//         print("i was pressed")
+//   let annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "pin")
+//    return annotationView
+//    }
+
+
+//  func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//    print("sup")
+//     if (segue.identifier == "displayPhotos" ){
+//        var goForth = segue.destination as! CollectionViewController
+//
+
+//   }
+
+// }
