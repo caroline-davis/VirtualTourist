@@ -11,6 +11,11 @@ import CoreData
 
 class CoreDataCollectionViewController: UICollectionViewController, NSFetchedResultsControllerDelegate {
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+    }
+    
     var fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult>? {
         didSet {
             // Whenever the frc changes, we execute the search and
@@ -66,38 +71,4 @@ extension CoreDataCollectionViewController {
     }
     
     
-    func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-        
-        if segue.identifier! == "displayPhotos" {
-            
-            if let photoVC = segue.destination as? CollectionViewController {
-                
-                // Create Fetch Request
-                let fr = NSFetchRequest<NSFetchRequestResult>(entityName: "Photo")
-                
-                fr.sortDescriptors = [NSSortDescriptor(key: "image", ascending: true)]
-                
-                // So far we have a search that will match ALL notes. However, we're
-                // only interested in those within the current notebook:
-                // NSPredicate to the rescue!
-                let indexPaths = collectionView?.indexPathsForSelectedItems
-                let indexPath = indexPaths?[0]
-                let photo = fetchedResultsController?.object(at: indexPath! as IndexPath)
-                
-                let pred = NSPredicate(format: "photo = %@", argumentArray: [photo!])
-                
-                fr.predicate = pred
-                
-                // Create FetchedResultsController
-                let fc = NSFetchedResultsController(fetchRequest: fr, managedObjectContext:fetchedResultsController!.managedObjectContext, sectionNameKeyPath: "humanReadableImage", cacheName: nil)
-                
-                // Inject it into the notesVC
-                photoVC.fetchedResultsController = fc
-            }
-        }
-    }
-
 }

@@ -28,7 +28,9 @@
                             <constraint firstAttribute="trailing" secondItem="mki-Rl-0d9" secondAttribute="trailing" id="uRI-LE-DO9"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Virtual Tourist" id="8Ox-ob-gNo"/>
+                    <navigationItem key="navigationItem" title="Virtual Tourist" id="8Ox-ob-gNo">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="ei4-dg-wLq"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="mki-Rl-0d9" id="bn5-W6-KUu"/>
                         <segue destination="s5F-fc-SYE" kind="show" identifier="displayPhotos" id="qwi-Ft-mW1"/>
@@ -36,41 +38,58 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="32.799999999999997" y="18.440779610194905"/>
+            <point key="canvasLocation" x="1" y="18"/>
         </scene>
         <!--Collection View Controller-->
         <scene sceneID="uQA-hU-cTC">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0pM-Xx-JLf" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <collectionViewController id="s5F-fc-SYE" customClass="CollectionViewController" customModule="VirtualTourist" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="Gyd-J2-NtG">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="Gyd-J2-NtG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="L2B-b7-31t">
                             <size key="itemSize" width="50" height="50"/>
-                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="headerReferenceSize" width="50" height="158"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="7Td-uY-fy0" userLabel="cell">
-                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                <rect key="frame" x="0.0" y="158" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </view>
+                                <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.25098040700000002" alpha="1" colorSpace="calibratedRGB"/>
                             </collectionViewCell>
                         </cells>
+                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="headerId" reuseIdentifier="headerId" id="0b8-F1-SbY" customClass="UICollectionViewCell">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="158"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                            <subviews>
+                                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" tag="100" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="GYn-6f-DKT">
+                                    <frame key="frameInset" width="375" height="165"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </mapView>
+                            </subviews>
+                        </collectionReusableView>
                         <connections>
                             <outlet property="dataSource" destination="s5F-fc-SYE" id="aMy-Lz-pEK"/>
                             <outlet property="delegate" destination="s5F-fc-SYE" id="gfB-6z-ojc"/>
                         </connections>
                     </collectionView>
+                    <toolbarItems>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="KO7-z4-Jb5"/>
+                        <barButtonItem title="New Collection" id="VlX-8G-LPP"/>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="tIx-nB-Ydv"/>
+                    </toolbarItems>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </collectionViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="0pM-Xx-JLf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="746" y="18"/>
+            <point key="canvasLocation" x="744.79999999999995" y="17.541229385307346"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="VPX-Fi-rud">

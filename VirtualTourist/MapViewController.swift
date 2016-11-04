@@ -12,6 +12,7 @@ import CoreData
 
 class MapViewController: UIViewController, MKMapViewDelegate, UIGestureRecognizerDelegate, CLLocationManagerDelegate {
     
+
     @IBOutlet weak var mapView: MKMapView!
     var stack: CoreDataStack!
 
@@ -19,6 +20,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, UIGestureRecognize
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
+
 
         // Calls the function to place pins and sets the press duration
         let longPress = UILongPressGestureRecognizer(target: self, action: #selector(self.handleLongPress(pressRecognizer:)))
@@ -108,7 +110,9 @@ class MapViewController: UIViewController, MKMapViewDelegate, UIGestureRecognize
             super.didReceiveMemoryWarning()
             // Dispose of any resources that can be recreated.
         }
-        
+    
+
+    
 
 }
 
