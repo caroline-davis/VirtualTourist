@@ -20,7 +20,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, UIGestureRecognize
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
-
+        self.test()
 
         // Calls the function to place pins and sets the press duration
         let longPress = UILongPressGestureRecognizer(target: self, action: #selector(self.handleLongPress(pressRecognizer:)))
@@ -62,6 +62,14 @@ class MapViewController: UIViewController, MKMapViewDelegate, UIGestureRecognize
         }
         self.mapView.addAnnotations(annotations)
         //centerMapOnLocation(annotations.last!, regionRadius: 1000.0)
+    }
+    
+    func test() {
+        let parameters = ["lat": 37.8136, "lon": 144.9631]
+        Client.sharedInstance().taskForGETMethod(parameters: parameters as [String:AnyObject]) { (results, error) in
+            print(results, error)
+        }
+
     }
     
     // MARK: - MKMapViewDelegate

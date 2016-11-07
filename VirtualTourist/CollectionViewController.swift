@@ -11,7 +11,6 @@ import UIKit
 import MapKit
 import CoreData
 
-// MARK: - CoreDataTableViewController: UITableViewController
 
 class CollectionViewController: CoreDataCollectionViewController {
     

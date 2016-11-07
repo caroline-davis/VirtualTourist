@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F135361E1DD0081100F72327 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F135361D1DD0081100F72327 /* Constants.swift */; };
+		F13536201DD01EFB00F72327 /* Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = F135361F1DD01EFB00F72327 /* Convenience.swift */; };
 		F1826ED41DC6C4A0008C3A4D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1826ED31DC6C4A0008C3A4D /* AppDelegate.swift */; };
 		F1826ED61DC6C4A0008C3A4D /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1826ED51DC6C4A0008C3A4D /* MapViewController.swift */; };
 		F1826ED91DC6C4A0008C3A4D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1826ED71DC6C4A0008C3A4D /* Main.storyboard */; };
@@ -42,6 +44,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F135361D1DD0081100F72327 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		F135361F1DD01EFB00F72327 /* Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Convenience.swift; path = ../Convenience.swift; sourceTree = "<group>"; };
 		F1826ED01DC6C4A0008C3A4D /* VirtualTourist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VirtualTourist.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1826ED31DC6C4A0008C3A4D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F1826ED51DC6C4A0008C3A4D /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -145,6 +149,8 @@
 		F1826F011DC6C4C4008C3A4D /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				F135361D1DD0081100F72327 /* Constants.swift */,
+				F135361F1DD01EFB00F72327 /* Convenience.swift */,
 				F1826F091DC712DC008C3A4D /* Pin+CoreDataClass.swift */,
 				F1826F0B1DC712DC008C3A4D /* Photo+CoreDataClass.swift */,
 				F1826F071DC6FC2A008C3A4D /* CoreDataStack.swift */,
@@ -309,6 +315,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				F196FB861DC998DD00FFCB16 /* CollectionViewController.swift in Sources */,
+				F13536201DD01EFB00F72327 /* Convenience.swift in Sources */,
+				F135361E1DD0081100F72327 /* Constants.swift in Sources */,
 				F1826ED61DC6C4A0008C3A4D /* MapViewController.swift in Sources */,
 				F1826F0F1DC712DC008C3A4D /* Photo+CoreDataClass.swift in Sources */,
 				F1826F0E1DC712DC008C3A4D /* Pin+CoreDataProperties.swift in Sources */,
