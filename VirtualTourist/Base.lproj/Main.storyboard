@@ -43,7 +43,6 @@
         <!--Collection View Controller-->
         <scene sceneID="uQA-hU-cTC">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="0pM-Xx-JLf" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <collectionViewController id="s5F-fc-SYE" customClass="CollectionViewController" customModule="VirtualTourist" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="Gyd-J2-NtG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -62,6 +61,12 @@
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" restorationIdentifier="cellPic" translatesAutoresizingMaskIntoConstraints="NO" id="fVH-lb-Yu5" userLabel="cellPic">
+                                            <frame key="frameInset" minX="-32" minY="-15" width="115" height="81"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                    </subviews>
                                 </view>
                                 <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.25098040700000002" alpha="1" colorSpace="calibratedRGB"/>
                             </collectionViewCell>
@@ -88,6 +93,7 @@
                     </toolbarItems>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0pM-Xx-JLf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="744.79999999999995" y="17.541229385307346"/>
         </scene>

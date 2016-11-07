@@ -28,6 +28,7 @@ struct Constants {
         static let Format = "format"
         static let NoJSONCallback = "nojsoncallback"
         static let SafeSearch = "safe_search"
+        static let PerPage = "per_page"
         static let Page = "page"
         static let BBox = "bbox"
         
@@ -40,6 +41,7 @@ struct Constants {
         static let ResponseFormat = "json"
         static let DisableJSONCallback = "1"
         static let SafeSearch = "1"
+        static let PerPage = "21"
     }
     
     struct FlickrResponseKeys {

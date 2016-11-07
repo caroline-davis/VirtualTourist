@@ -39,8 +39,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, UIGestureRecognize
         do {
             let locations = try stack.context.fetch(request) as? [Pin]
             for location in locations! {
-                
-                if location.latitude != nil || location.longitude != nil {
+             
                     // Notice that the float values are being used to create CLLocationDegree values.
                     // This is a version of the Double type.
                     let lat = CLLocationDegrees(location.latitude)
@@ -56,7 +55,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, UIGestureRecognize
                     // Finally we place the annotation in an array of annotations.
                     annotations.append(annotation)
                 }
-            }
+           
         } catch let error as NSError {
             print(error.localizedDescription)
         }
@@ -103,7 +102,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, UIGestureRecognize
         
         let annotation = MKPointAnnotation()
         annotation.coordinate = touchMapCoordinate
-        
         mapView.addAnnotation(annotation)
     }
     

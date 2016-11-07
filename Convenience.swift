@@ -15,6 +15,7 @@
         parametersWithApiKey[Constants.FlickrParameterKeys.Format] = Constants.FlickrParameterValues.ResponseFormat as AnyObject?
         parametersWithApiKey[Constants.FlickrParameterKeys.Extras] = Constants.FlickrParameterValues.MediumURL as AnyObject?
         parametersWithApiKey[Constants.FlickrParameterKeys.SafeSearch] = Constants.FlickrParameterValues.SafeSearch as AnyObject?
+        parametersWithApiKey[Constants.FlickrParameterKeys.PerPage] = Constants.FlickrParameterValues.PerPage as AnyObject?
         
         
         
@@ -90,7 +91,23 @@
             completionHandlerForConvertData(nil, NSError(domain: "convertDataWithCompletionHandler", code: 1, userInfo: userInfo))
         }
         
+        /* GUARD: Did Flickr return an error (stat != ok)? */
+        guard let stat = parsedResult[Constants.FlickrResponseKeys.Status] as? String, stat == Constants.FlickrResponseValues.OKStatus else {
+            print("Flickr API returned an error. See error code and message in \(parsedResult)")
+            return
+        }
+        
+        /* GUARD: Are the "photos" and "photo" keys in our result? */
+            guard let photosDictionary = parsedResult[Constants.FlickrResponseKeys.Photos] as? [String:AnyObject], let photoArray = photosDictionary[Constants.FlickrResponseKeys.Photo] as? [[String:AnyObject]] else {
+                print("Cannot find keys '\(Constants.FlickrResponseKeys.Photos)' and '\(Constants.FlickrResponseKeys.Photo)' in \(parsedResult)")
+                return
+            }
+        
+        
+
+        
         completionHandlerForConvertData(parsedResult, nil)
+        
     }
     
     class func sharedInstance() -> Client {
