@@ -64,10 +64,10 @@ class MapViewController: UIViewController, MKMapViewDelegate, UIGestureRecognize
     }
     
     func test() {
-        let parameters = ["lat": 37.8136, "lon": 144.9631]
-        Client.sharedInstance().taskForGETMethod(parameters: parameters as [String:AnyObject]) { (results, error) in
-            print(results, error)
-        }
+        //let parameters = ["lat": 37.8136, "lon": 144.9631]
+        //Client.sharedInstance().taskForGETMethod(parameters: parameters as [String:AnyObject]) { (results, error) in
+            //print(results, error)
+        //}
 
     }
     
@@ -108,16 +108,11 @@ class MapViewController: UIViewController, MKMapViewDelegate, UIGestureRecognize
     // When pin is tapped it segues over to the collectionviewcontroller
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         print("its me")
+        Client.sharedInstance().latitude = view.annotation?.coordinate.latitude
+        Client.sharedInstance().longitude = view.annotation?.coordinate.longitude
         mapView.deselectAnnotation(view.annotation, animated: true)
         performSegue(withIdentifier: "displayPhotos", sender: view)
     }
-    
-        override func didReceiveMemoryWarning() {
-            super.didReceiveMemoryWarning()
-            // Dispose of any resources that can be recreated.
-        }
-    
-
     
 
 }

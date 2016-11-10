@@ -5,6 +5,8 @@
  class Client : NSObject {
     
     var session = URLSession.shared
+    var latitude: Double?
+    var longitude: Double?
     
     func taskForGETMethod(parameters: [String:AnyObject], completionHandlerForGET: @escaping (_ result: AnyObject?, _ error: NSError?) -> Void) -> URLSessionDataTask {
         
@@ -49,7 +51,6 @@
                 sendError("No data was returned by the request!")
                 return
             }
-            print(type(of: data))
             let r = 14...Int(data.count) - 2
             let newData = data.subdata(in: Range(r))
             
