@@ -50,14 +50,17 @@ class CollectionViewController: UIViewController, UICollectionViewDataSource, UI
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: CollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CollectionViewCell
-        
+        cell.indicator.startAnimating()
         let photo = self.tableData[indexPath.item]
         let url = photo["url_m"] as! String
         let task = URLSession.shared.dataTask(with: URLRequest(url: URL(string:url)!), completionHandler: { (data, response, error) in
             print(data, error)
             if error == nil {
-                if let image = UIImage(data: data!) {
-                    cell.img.image = image
+                DispatchQueue.main.async {
+                    cell.indicator.stopAnimating()
+                    if let image = UIImage(data: data!) {
+                        cell.img.image = image
+                    }
                 }
             }
         })

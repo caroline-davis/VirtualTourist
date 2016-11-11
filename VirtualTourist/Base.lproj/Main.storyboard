@@ -73,25 +73,24 @@
                                             <rect key="frame" x="0.0" y="0.0" width="105" height="81"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RrI-ho-O0d">
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6Ut-yO-mqW"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6Ut-yO-mqW">
+                                                    <frame key="frameInset" minX="3" minY="8" width="99" height="73"/>
+                                                </imageView>
+                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="PVQ-aM-WtY">
+                                                    <frame key="frameInset" minX="42" minY="30" width="20" height="20"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </activityIndicatorView>
                                             </subviews>
                                         </view>
                                         <constraints>
                                             <constraint firstAttribute="bottomMargin" secondItem="6Ut-yO-mqW" secondAttribute="bottom" constant="10" id="GUV-zH-x8u"/>
                                             <constraint firstItem="6Ut-yO-mqW" firstAttribute="centerX" secondItem="Q99-ei-sno" secondAttribute="centerX" id="Pxp-Z8-QVG"/>
                                             <constraint firstItem="6Ut-yO-mqW" firstAttribute="leading" secondItem="Q99-ei-sno" secondAttribute="leadingMargin" constant="-5" id="QEs-A1-qM8"/>
-                                            <constraint firstAttribute="bottom" secondItem="RrI-ho-O0d" secondAttribute="bottom" id="c1G-82-Huk"/>
-                                            <constraint firstItem="6Ut-yO-mqW" firstAttribute="centerX" secondItem="RrI-ho-O0d" secondAttribute="centerX" id="jOe-V7-Mor"/>
                                             <constraint firstItem="6Ut-yO-mqW" firstAttribute="top" secondItem="Q99-ei-sno" secondAttribute="topMargin" id="kfl-41-9lO"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="img" destination="6Ut-yO-mqW" id="rEd-vZ-gHH"/>
-                                            <outlet property="label" destination="RrI-ho-O0d" id="CZl-ae-2MY"/>
+                                            <outlet property="indicator" destination="PVQ-aM-WtY" id="Rdb-Mo-ugz"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
