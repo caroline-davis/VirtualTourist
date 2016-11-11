@@ -99,6 +99,15 @@
                                     <outlet property="delegate" destination="oIT-H3-Sak" id="eWw-Hk-ppQ"/>
                                 </connections>
                             </collectionView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MWc-1B-T2b">
+                                <frame key="frameInset" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="NTB-w3-bqh"/>
+                                    <barButtonItem title="New Collection" id="dtC-fL-doL"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="51r-5P-Hnl"/>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
