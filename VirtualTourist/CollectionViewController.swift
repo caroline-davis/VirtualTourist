@@ -15,6 +15,21 @@ class CollectionViewController: UIViewController, UICollectionViewDataSource, UI
     override func viewDidLoad() {
         super.viewDidLoad()
         self.findPhotos()
+        
+        var region: MKCoordinateRegion = self.map.region
+        
+        region.center.latitude = (Client.sharedInstance().latitude)!
+        region.center.longitude = (Client.sharedInstance().longitude)!
+        
+        region.span = MKCoordinateSpanMake(0.5, 0.5)
+        
+        let annotation = MKPointAnnotation()
+        annotation.coordinate.latitude = Client.sharedInstance().latitude!
+        annotation.coordinate.longitude = Client.sharedInstance().longitude!
+
+        self.map.addAnnotation(annotation)
+        self.map.setRegion(region, animated: true)
+      
     }
     
     @IBOutlet weak var refreshCollection: UIBarButtonItem!

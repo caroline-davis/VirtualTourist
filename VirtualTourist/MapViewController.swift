@@ -11,12 +11,10 @@ import MapKit
 import CoreData
 
 class MapViewController: UIViewController, MKMapViewDelegate, UIGestureRecognizerDelegate, CLLocationManagerDelegate, NSFetchedResultsControllerDelegate {
-    
 
     @IBOutlet weak var mapView: MKMapView!
     var stack: CoreDataStack!
 
- 
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
@@ -30,7 +28,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, UIGestureRecognize
         // Get the Stack
         let delegate = UIApplication.shared.delegate as! AppDelegate
         stack = delegate.stack
-        
         
         // We will create an MKPointAnnotation for each dictionary in "locations". The
         // point annotations will be stored in this array, and then provided to the map view.
