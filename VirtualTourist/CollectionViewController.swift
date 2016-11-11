@@ -17,26 +17,34 @@ class CollectionViewController: UIViewController, UICollectionViewDataSource, UI
         self.findPhotos()
     }
     
+    @IBOutlet weak var refreshCollection: UIBarButtonItem!
     @IBOutlet weak var map: MKMapView!
     @IBOutlet weak var collectionView: UICollectionView!
     
     var tableData: [[String:AnyObject]] = []
-    var tableImages: [String] = ["evox.jpg","458.jpg","gtr.jpg"]
+    var page = 1
     
     func findPhotos() {
-        let parameters = ["lat": Client.sharedInstance().latitude, "lon": Client.sharedInstance().longitude]
-        Client.sharedInstance().taskForGETMethod(parameters: parameters as [String:AnyObject]) { (results, error) in
-            print(results, error)
+        let parameters = ["lat": Client.sharedInstance().latitude, "lon": Client.sharedInstance().longitude, "page": self.page] as [String : Any]
+        Client.sharedInstance().taskForGETMethod(parameters: parameters as [String : AnyObject]) { (results, error) in
             if (results != nil) {
-                for photo in results as! [[String:AnyObject]]! {
-                    print(photo)
+                for photo in results as [[String:AnyObject]]! {
                     self.tableData.append(photo)
-                    DispatchQueue.main.async {
-                        self.collectionView?.reloadData()
-                    }
+                }
+                DispatchQueue.main.async {
+                    self.collectionView?.reloadData()
                 }
             }
         }
+    }
+    
+    func clear() {
+        self.tableData.removeAll()
+        self.page = self.page + 1
+        DispatchQueue.main.async {
+            self.collectionView?.reloadData()
+        }
+        Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(findPhotos), userInfo: nil, repeats: false)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -50,16 +58,19 @@ class CollectionViewController: UIViewController, UICollectionViewDataSource, UI
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: CollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CollectionViewCell
-        cell.indicator.startAnimating()
+        DispatchQueue.main.async {
+            cell.img.image = nil
+            cell.indicator.startAnimating()
+        }
         let photo = self.tableData[indexPath.item]
         let url = photo["url_m"] as! String
         let task = URLSession.shared.dataTask(with: URLRequest(url: URL(string:url)!), completionHandler: { (data, response, error) in
-            print(data, error)
+            // print(data, error)
             if error == nil {
                 DispatchQueue.main.async {
-                    cell.indicator.stopAnimating()
                     if let image = UIImage(data: data!) {
                         cell.img.image = image
+                        cell.indicator.stopAnimating()
                     }
                 }
             }
@@ -68,4 +79,11 @@ class CollectionViewController: UIViewController, UICollectionViewDataSource, UI
         return cell
      
     }
+    
+    @IBAction func reloadCells() {
+        clear()
+    }
+    
+    
+    
 }

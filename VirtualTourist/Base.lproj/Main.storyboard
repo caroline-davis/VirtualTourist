@@ -73,17 +73,17 @@
                                             <rect key="frame" x="0.0" y="0.0" width="105" height="81"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6Ut-yO-mqW">
-                                                    <frame key="frameInset" minX="3" minY="8" width="99" height="73"/>
-                                                </imageView>
                                                 <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="PVQ-aM-WtY">
                                                     <frame key="frameInset" minX="42" minY="30" width="20" height="20"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </activityIndicatorView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6Ut-yO-mqW">
+                                                    <frame key="frameInset" minX="3" minY="8" width="99" height="73"/>
+                                                </imageView>
                                             </subviews>
                                         </view>
                                         <constraints>
-                                            <constraint firstAttribute="bottomMargin" secondItem="6Ut-yO-mqW" secondAttribute="bottom" constant="10" id="GUV-zH-x8u"/>
+                                            <constraint firstAttribute="bottomMargin" secondItem="6Ut-yO-mqW" secondAttribute="bottom" constant="5" id="GUV-zH-x8u"/>
                                             <constraint firstItem="6Ut-yO-mqW" firstAttribute="centerX" secondItem="Q99-ei-sno" secondAttribute="centerX" id="Pxp-Z8-QVG"/>
                                             <constraint firstItem="6Ut-yO-mqW" firstAttribute="leading" secondItem="Q99-ei-sno" secondAttribute="leadingMargin" constant="-5" id="QEs-A1-qM8"/>
                                             <constraint firstItem="6Ut-yO-mqW" firstAttribute="top" secondItem="Q99-ei-sno" secondAttribute="topMargin" id="kfl-41-9lO"/>
@@ -104,7 +104,11 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="NTB-w3-bqh"/>
-                                    <barButtonItem title="New Collection" id="dtC-fL-doL"/>
+                                    <barButtonItem title="New Collection" id="dtC-fL-doL">
+                                        <connections>
+                                            <action selector="reloadCells" destination="oIT-H3-Sak" id="kdi-2q-s6z"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="51r-5P-Hnl"/>
                                 </items>
                             </toolbar>
@@ -124,6 +128,7 @@
                     <connections>
                         <outlet property="collectionView" destination="vvc-YB-tcU" id="FaE-V3-6z8"/>
                         <outlet property="map" destination="Kz6-BK-XVB" id="oGe-mh-jeJ"/>
+                        <outlet property="refreshCollection" destination="dtC-fL-doL" id="X5g-Aj-gVB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="prY-W5-8US" userLabel="First Responder" sceneMemberID="firstResponder"/>

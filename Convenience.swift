@@ -104,7 +104,6 @@
                 return
             }
     
-        print(photoArray)
         completionHandlerForConvertData(photoArray, nil)
         
     }
