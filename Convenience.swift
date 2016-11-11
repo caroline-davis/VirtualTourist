@@ -8,7 +8,7 @@
     var latitude: Double?
     var longitude: Double?
     
-    func taskForGETMethod(parameters: [String:AnyObject], completionHandlerForGET: @escaping (_ result: AnyObject?, _ error: NSError?) -> Void) -> URLSessionDataTask {
+    func taskForGETMethod(parameters: [String:AnyObject], completionHandlerForGET: @escaping (_ result: [[String:AnyObject]]?, _ error: NSError?) -> Void) -> URLSessionDataTask {
         
         /* 1. Set the parameters */
         var parametersWithApiKey = parameters
@@ -81,7 +81,7 @@
         return components.url!
     }
     
-    private func convertDataWithCompletionHandler(_ data: Data, completionHandlerForConvertData: (_ result: AnyObject?, _ error: NSError?) -> Void) {
+    private func convertDataWithCompletionHandler(_ data: Data, completionHandlerForConvertData: (_ result: [[String:AnyObject]]?, _ error: NSError?) -> Void) {
         
         var parsedResult: AnyObject! = nil
         do {
@@ -103,11 +103,9 @@
                 print("Cannot find keys '\(Constants.FlickrResponseKeys.Photos)' and '\(Constants.FlickrResponseKeys.Photo)' in \(parsedResult)")
                 return
             }
-        
-        
-
-        
-        completionHandlerForConvertData(parsedResult, nil)
+    
+        print(photoArray)
+        completionHandlerForConvertData(photoArray, nil)
         
     }
     
