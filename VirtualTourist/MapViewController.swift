@@ -18,56 +18,54 @@ class MapViewController: UIViewController, MKMapViewDelegate, UIGestureRecognize
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
-        self.test()
+        
+        // Get the Stack
+        let delegate = UIApplication.shared.delegate as! AppDelegate
+        stack = delegate.stack
+        
 
         // Calls the function to place pins and sets the press duration
         let longPress = UILongPressGestureRecognizer(target: self, action: #selector(self.handleLongPress(pressRecognizer:)))
         longPress.minimumPressDuration = 1.0
         mapView.addGestureRecognizer(longPress)
         
-        // Get the Stack
-        let delegate = UIApplication.shared.delegate as! AppDelegate
-        stack = delegate.stack
-        
-        // We will create an MKPointAnnotation for each dictionary in "locations". The
-        // point annotations will be stored in this array, and then provided to the map view.
-        var annotations = [MKPointAnnotation]()
-        let request: NSFetchRequest<NSFetchRequestResult> = Pin.fetchRequest()
+        self.loadPins()
+    }
+    
+    func savePin(lat: Double, long: Double) {
+        //Save pin to Core Data
+        let pin = Pin(latitude: lat, longitude: long, context: stack.context)
         do {
-            let locations = try stack.context.fetch(request) as? [Pin]
-            for location in locations! {
-             
-                    // Notice that the float values are being used to create CLLocationDegree values.
-                    // This is a version of the Double type.
-                    let lat = CLLocationDegrees(location.latitude)
-                    let long = CLLocationDegrees(location.longitude)
-                    
-                    // The lat and long are used to create a CLLocationCoordinates2D instance
-                    let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
-                    
-                    // Here we create the annotation and set its coordiate, title, and subtitle properties
-                    let annotation = MKPointAnnotation()
-                    annotation.coordinate = coordinate
-                    
-                    // Finally we place the annotation in an array of annotations.
-                    annotations.append(annotation)
-                }
-           
+            try stack.saveContext()
         } catch let error as NSError {
             print(error.localizedDescription)
         }
-        self.mapView.addAnnotations(annotations)
-        //centerMapOnLocation(annotations.last!, regionRadius: 1000.0)
     }
     
-    func test() {
-        //let parameters = ["lat": 37.8136, "lon": 144.9631]
-        //Client.sharedInstance().taskForGETMethod(parameters: parameters as [String:AnyObject]) { (results, error) in
-            //print(results, error)
-        //}
-
+    func loadPins() {
+        //  get context
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Pin")
+        do {
+            var annotations = [MKPointAnnotation]()
+            if let pins = try? stack.context.fetch(fetchRequest) as! [Pin] {
+                // create annotations for pins
+                for pin in pins {
+                    // This is a version of the Double type.
+                    let lat = CLLocationDegrees(pin.latitude)
+                    let long = CLLocationDegrees(pin.longitude)
+                    
+                    // The lat and long are used to create a CLLocationCoordinates2D instance
+                    let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
+                    let annotation = MKPointAnnotation()
+                    annotation.coordinate = coordinate
+                    // Finally we place the annotation in an array of annotations.
+                    annotations.append(annotation)
+                }
+                self.mapView.addAnnotations(annotations)
+                // centerMapOnLocation(annotations.last!, regionRadius: 1000.0)
+            }
+        }
     }
-    
     // MARK: - MKMapViewDelegate
     
     // Create the pins
@@ -97,12 +95,12 @@ class MapViewController: UIViewController, MKMapViewDelegate, UIGestureRecognize
         
         let annotation = MKPointAnnotation()
         annotation.coordinate = touchMapCoordinate
+        self.savePin(lat: annotation.coordinate.latitude, long: annotation.coordinate.longitude)
         mapView.addAnnotation(annotation)
     }
     
     // When pin is tapped it segues over to the collectionviewcontroller
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        print("its me")
         Client.sharedInstance().latitude = view.annotation?.coordinate.latitude
         Client.sharedInstance().longitude = view.annotation?.coordinate.longitude
         mapView.deselectAnnotation(view.annotation, animated: true)
