@@ -14,7 +14,7 @@ import UIKit
 public class Photo: NSManagedObject {
     
     // MARK: Initializer
-    convenience init(image: NSData, context: NSManagedObjectContext){
+    convenience init(image: NSData, pin: Pin, context: NSManagedObjectContext){
         
         // An EntityDescription is an object that has access to all
         // the information you provided in the Entity part of the model
@@ -22,6 +22,7 @@ public class Photo: NSManagedObject {
         if let ent = NSEntityDescription.entity(forEntityName: "Photo", in: context) {
             self.init(entity: ent, insertInto: context)
             self.image = image
+            self.pin = pin
         } else {
             fatalError("Unable to find Entity name!")
         }

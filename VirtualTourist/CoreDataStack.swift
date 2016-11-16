@@ -94,6 +94,10 @@ extension CoreDataStack {
         }
     }
     
+    func delete(obj: NSManagedObject) throws {
+        context.delete(obj)
+    }
+    
     func autoSave(_ delayInSeconds: Int) {
         
         if delayInSeconds > 0 {
