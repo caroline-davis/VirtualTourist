@@ -51,7 +51,7 @@ class CollectionViewController: UIViewController, UICollectionViewDataSource, UI
     @IBOutlet weak var map: MKMapView!
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var tableData: [AnyObject] = []
+    var tableData: [Photo] = []
     var cachedImages = [IndexPath: UIImage]()
     var page = 1
     
@@ -68,7 +68,7 @@ class CollectionViewController: UIViewController, UICollectionViewDataSource, UI
             // if we found any photos, add them to tableData
             if photos.count > 0 {
                 for photo in photos {
-                    self.tableData.append(photo.image! as NSData)
+                    self.tableData.append(photo)
                 }
                 // reload the page with our new images
                 DispatchQueue.main.async {
@@ -89,22 +89,13 @@ class CollectionViewController: UIViewController, UICollectionViewDataSource, UI
             if (results != nil) {
                 print(results?.count)
                 for photo in results as [[String:AnyObject]]! {
-                    self.tableData.append(photo as AnyObject)
+                    let url = photo["url_m"] as! String
+                    self.tableData.append(Photo(url: url, context: self.stack.context))
                 }
                 DispatchQueue.main.async {
                     self.collectionView?.reloadData()
                 }
             }
-        }
-    }
-    
-    func savePhoto(data: NSData, pin: Pin ) {
-        // save a new image
-        let photo = Photo(image: data, pin: pin, context: stack.context)
-        do {
-            try stack.saveContext()
-        } catch let error as NSError {
-            print(error.localizedDescription)
         }
     }
     
@@ -120,7 +111,6 @@ class CollectionViewController: UIViewController, UICollectionViewDataSource, UI
     func clear() {
         // remove all photos from the tableData
         self.tableData.removeAll()
-        self.cachedImages.removeAll()
         
         // reload the view to show empty tableData
         DispatchQueue.main.async {
@@ -159,9 +149,13 @@ class CollectionViewController: UIViewController, UICollectionViewDataSource, UI
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("Cell \(indexPath.row) selected")
-        // delete from array
-        self.tableData.remove(at: indexPath.item)
         
+        // delete from array
+        let photo = self.tableData[indexPath.item]
+        self.tableData.remove(at: indexPath.item)
+        self.deletePhoto(photo: photo)
+        self.collectionView.deleteItems(at: [indexPath])
+
         // reload the view to show empty tableData
         DispatchQueue.main.async {
             self.collectionView?.reloadData()
@@ -180,43 +174,38 @@ class CollectionViewController: UIViewController, UICollectionViewDataSource, UI
         
         // get the photo from tableData
         let photo = self.tableData[indexPath.item]
-
-        // if the photo is NSData (is saved to CoreData), render immediately
-        if let NSphoto = photo as? NSData {
+        
+        if let image = photo.image {
             DispatchQueue.main.async {
-                if let image = UIImage(data: NSphoto as Data) {
+                if let image = UIImage(data: image as! Data) {
                     cell.img.image = image
                     cell.indicator.stopAnimating()
                 }
             }
         } else {
-            // if the photo is a dictionary, fetch the photo data with the url_m url
-            if let item = self.cachedImages[indexPath] {
-                // if image has been cached display it
-                DispatchQueue.main.async {
-                    cell.img.image = item
-                    cell.indicator.stopAnimating()
-                }
-            } else {
-                let url = photo["url_m"] as! String
-                let task = URLSession.shared.dataTask(with: URLRequest(url: URL(string:url)!), completionHandler: { (data, response, error) in
-                    if error == nil {
-                        // save photo to CoreData
-                        self.savePhoto(data: data! as NSData, pin: self.pin!)
-                        DispatchQueue.main.async {
-                            if let image = UIImage(data: data!) {
-                                // cache image to avoid downloading the image for each cell reuse
-                                self.cachedImages[indexPath] = image
-                                // display image and stop loader
-                                cell.img.image = image
-                                cell.indicator.stopAnimating()
-                            }
+            let url = photo.url
+            let task = URLSession.shared.dataTask(with: URLRequest(url: URL(string:url!)!), completionHandler: { (data, response, error) in
+                if error == nil {
+                    // save photo to CoreData
+                    photo.pin = self.pin
+                    photo.image = data! as NSData
+                    do {
+                        try self.stack.saveContext()
+                    } catch let error as NSError {
+                        print(error.localizedDescription)
+                    }
+                    DispatchQueue.main.async {
+                        if let image = UIImage(data: data!) {
+                            // display image and stop loader
+                            cell.img.image = image
+                            cell.indicator.stopAnimating()
                         }
                     }
-                })
-                task.resume()
-            }
-            }
+                }
+            })
+            task.resume()
+        }
+
         return cell
      
     }

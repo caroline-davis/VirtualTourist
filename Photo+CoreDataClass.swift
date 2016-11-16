@@ -27,6 +27,15 @@ public class Photo: NSManagedObject {
             fatalError("Unable to find Entity name!")
         }
     }
+    
+    convenience init(url: String, context: NSManagedObjectContext) {
+        if let ent = NSEntityDescription.entity(forEntityName: "Photo", in: context) {
+            self.init(entity: ent, insertInto: context)
+            self.url = url
+        } else {
+            fatalError("Unable to find Entity name!")
+        }
+    }
     // MARK: Computed Property
     
     var humanReadableImage: AnyObject? {

@@ -18,5 +18,6 @@ extension Photo {
 
     @NSManaged public var image: NSData?
     @NSManaged public var pin: Pin?
+    @NSManaged public var url: String?
 
 }
