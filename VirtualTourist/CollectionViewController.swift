@@ -36,7 +36,7 @@ class CollectionViewController: UIViewController, UICollectionViewDataSource, UI
         let annotation = MKPointAnnotation()
         annotation.coordinate.latitude = Client.sharedInstance().latitude!
         annotation.coordinate.longitude = Client.sharedInstance().longitude!
-
+        
         self.map.addAnnotation(annotation)
         self.map.setRegion(region, animated: true)
     }
@@ -81,16 +81,17 @@ class CollectionViewController: UIViewController, UICollectionViewDataSource, UI
             
         }
     }
-
+    
     func findPhotos() {
         // pass lat and long params
         let parameters = ["lat": Client.sharedInstance().latitude, "lon": Client.sharedInstance().longitude, "page": self.page] as [String : Any]
         Client.sharedInstance().taskForGETMethod(parameters: parameters as [String : AnyObject]) { (results, error) in
             if (results != nil) {
-                print(results?.count)
                 for photo in results as [[String:AnyObject]]! {
                     let url = photo["url_m"] as! String
-                    self.tableData.append(Photo(url: url, context: self.stack.context))
+                    DispatchQueue.main.async {
+                        self.tableData.append(Photo(url: url, pin: self.pin!, context: self.stack.context))
+                    }
                 }
                 DispatchQueue.main.async {
                     self.collectionView?.reloadData()
@@ -101,6 +102,8 @@ class CollectionViewController: UIViewController, UICollectionViewDataSource, UI
     
     func deletePhoto(photo: Photo) {
         do {
+            // delete photo and save context
+            // the delete method was added to CoreDataStack.swift
             try stack.delete(obj: photo)
             try stack.saveContext()
         } catch let error as NSError {
@@ -112,17 +115,19 @@ class CollectionViewController: UIViewController, UICollectionViewDataSource, UI
         // remove all photos from the tableData
         self.tableData.removeAll()
         
-        // reload the view to show empty tableData
-        DispatchQueue.main.async {
-            self.collectionView?.reloadData()
-        }
-        
-        // delete all saved photos for this pin
+        // delete CoreData photos for this pin
         let photos = self.getPinPhotos()
         if photos.count > 0 {
             for photo in photos {
+                // the delete photo function deletes an object and saves the context
+                // check it out on line 101
                 self.deletePhoto(photo: photo)
             }
+        }
+        
+        // reload the view to show empty tableData
+        DispatchQueue.main.async {
+            self.collectionView?.reloadData()
         }
         
         // update the page we want to fetch from flickr
@@ -148,14 +153,13 @@ class CollectionViewController: UIViewController, UICollectionViewDataSource, UI
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("Cell \(indexPath.row) selected")
         
         // delete from array
         let photo = self.tableData[indexPath.item]
         self.tableData.remove(at: indexPath.item)
         self.deletePhoto(photo: photo)
         self.collectionView.deleteItems(at: [indexPath])
-
+        
         // reload the view to show empty tableData
         DispatchQueue.main.async {
             self.collectionView?.reloadData()
@@ -177,24 +181,23 @@ class CollectionViewController: UIViewController, UICollectionViewDataSource, UI
         
         if let image = photo.image {
             DispatchQueue.main.async {
-                if let image = UIImage(data: image as! Data) {
+                if let image = UIImage(data: image as Data) {
                     cell.img.image = image
                     cell.indicator.stopAnimating()
                 }
             }
         } else {
             let url = photo.url
-            let task = URLSession.shared.dataTask(with: URLRequest(url: URL(string:url!)!), completionHandler: { (data, response, error) in
+            Client.sharedInstance().taskForImage(url: url!) { (data, response, error) in
                 if error == nil {
-                    // save photo to CoreData
-                    photo.pin = self.pin
-                    photo.image = data! as NSData
-                    do {
-                        try self.stack.saveContext()
-                    } catch let error as NSError {
-                        print(error.localizedDescription)
-                    }
                     DispatchQueue.main.async {
+                        // save photo to CoreData
+                        photo.image = data! as NSData
+                        do {
+                            try self.stack.saveContext()
+                        } catch let error as NSError {
+                            print(error.localizedDescription)
+                        }
                         if let image = UIImage(data: data!) {
                             // display image and stop loader
                             cell.img.image = image
@@ -202,18 +205,13 @@ class CollectionViewController: UIViewController, UICollectionViewDataSource, UI
                         }
                     }
                 }
-            })
-            task.resume()
-        }
-
+            }
+        }        
         return cell
-     
     }
     
     @IBAction func reloadCells() {
         clear()
     }
-    
-    
     
 }

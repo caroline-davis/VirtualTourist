@@ -99,15 +99,24 @@
         }
         
         /* GUARD: Are the "photos" and "photo" keys in our result? */
-            guard let photosDictionary = parsedResult[Constants.FlickrResponseKeys.Photos] as? [String:AnyObject], let photoArray = photosDictionary[Constants.FlickrResponseKeys.Photo] as? [[String:AnyObject]] else {
-                print("Cannot find keys '\(Constants.FlickrResponseKeys.Photos)' and '\(Constants.FlickrResponseKeys.Photo)' in \(parsedResult)")
-                return
-            }
-    
+        guard let photosDictionary = parsedResult[Constants.FlickrResponseKeys.Photos] as? [String:AnyObject], let photoArray = photosDictionary[Constants.FlickrResponseKeys.Photo] as? [[String:AnyObject]] else {
+            print("Cannot find keys '\(Constants.FlickrResponseKeys.Photos)' and '\(Constants.FlickrResponseKeys.Photo)' in \(parsedResult)")
+            return
+        }
+        
         completionHandlerForConvertData(photoArray, nil)
         
     }
     
+    func taskForImage(url: String, completionHandlerForImage: @escaping (_ data: Data?, _ response: URLResponse?, _ error: Error?) -> Void) {
+    
+        let task = URLSession.shared.dataTask(with: URLRequest(url: URL(string:url)!), completionHandler: { (data, response, error) in
+                completionHandlerForImage(data, response, error)
+        })
+        task.resume()
+    }
+
+ 
     class func sharedInstance() -> Client {
         struct Singleton {
             static var sharedInstance = Client()

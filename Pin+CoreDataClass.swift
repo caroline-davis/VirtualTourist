@@ -26,5 +26,5 @@ public class Pin: NSManagedObject {
             fatalError("Unable to find Entity name!")
         }
     }
-
+    
 }

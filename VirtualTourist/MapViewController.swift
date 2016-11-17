@@ -11,19 +11,19 @@ import MapKit
 import CoreData
 
 class MapViewController: UIViewController, MKMapViewDelegate, UIGestureRecognizerDelegate, CLLocationManagerDelegate, NSFetchedResultsControllerDelegate {
-
+    
     @IBOutlet weak var mapView: MKMapView!
     var stack: CoreDataStack!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
-        
+
         // Get the Stack
         let delegate = UIApplication.shared.delegate as! AppDelegate
         stack = delegate.stack
         
-
+        
         // Calls the function to place pins and sets the press duration
         let longPress = UILongPressGestureRecognizer(target: self, action: #selector(self.handleLongPress(pressRecognizer:)))
         longPress.minimumPressDuration = 1.0
@@ -70,7 +70,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, UIGestureRecognize
     
     // Create the pins
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-       
+        
         let reuseId = "pin"
         var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId) as? MKPinAnnotationView
         
@@ -84,7 +84,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, UIGestureRecognize
         }
         return pinView
     }
-
+    
     
     // When the user presses on the map a pin comes up
     func handleLongPress(pressRecognizer: UIGestureRecognizer){
@@ -107,27 +107,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, UIGestureRecognize
         performSegue(withIdentifier: "displayPhotos", sender: view)
     }
     
-
+    
 }
 
-
-// This delegate method is implemented to respond to taps. It needs to segue to the collectionview controller
-
-// *** when pin is tapped it segues to collection view controller**** + load the images.
-//func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-//  private func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
-//         print("i was pressed")
-//   let annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "pin")
-//    return annotationView
-//    }
-
-
-//  func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//    print("sup")
-//     if (segue.identifier == "displayPhotos" ){
-//        var goForth = segue.destination as! CollectionViewController
-//
-
-//   }
-
-// }
